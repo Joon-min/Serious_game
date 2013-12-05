@@ -4,9 +4,9 @@ using System.Collections;
 public class MouseController : MonoBehaviour {
 	
 	
-	// 1 : jump picker(blue)  2: acc picker(green)
+	// 1 : jump picker(blue)  2: acc picker(green)  3: warp  4: mag
 	public int mousePicker = 0;
-	bool[] mousepicker = new bool [5]; // 획득 여부 저장하기.
+	public bool[] hasPicker = new bool [5]; // 획득 여부 저장하기.
 	public Vector3[] warpGrid = new Vector3[2];
 	public AudioClip scratch;
 	int warpLeft = 2;
@@ -84,17 +84,33 @@ public class MouseController : MonoBehaviour {
 		
 		
 		if(Input.GetMouseButtonDown(1)){
-			if(mousePicker == 4){mousePicker =0; }
+			if(mousePicker == 4){ mousePicker = 0;}
 			else {mousePicker++;}
+			
+			while(!hasPicker[mousePicker]){
+			if(mousePicker == 4){ mousePicker = 0;}
+			else {mousePicker++;}
+			}
 			pickerChange ();
 			
 		}
 		
-		if(Input.GetKey("1")){mousePicker=0; pickerChange();}
-		if(Input.GetKey("2")){mousePicker=1; pickerChange();}
-		if(Input.GetKey("3")){mousePicker=2; pickerChange();}
-		if(Input.GetKey("4")){mousePicker=3; pickerChange();}
-		if(Input.GetKey("5")){mousePicker=4; pickerChange();}
+		
+		if(Input.GetKey("1")){
+			if(hasPicker[0])	
+			mousePicker=0; pickerChange();}
+		if(Input.GetKey("2")){
+			if(hasPicker[1])			
+			mousePicker=1; pickerChange();}
+		if(Input.GetKey("3")){
+			if(hasPicker[2])	
+			mousePicker=2; pickerChange();}
+		if(Input.GetKey("4")){
+			if(hasPicker[3])	
+			mousePicker=3; pickerChange();}
+		if(Input.GetKey("5")){
+			if(hasPicker[4])	
+			mousePicker=4; pickerChange();}
 		
 		
 		
